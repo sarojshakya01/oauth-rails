@@ -1,0 +1,26 @@
+<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <div class="showHidePassword">
+      <%= f.password_field :password, autocomplete: "off", class: "input-lg", :append => "<i class='fa fa-eye-slash'></i>".html_safe %>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="form-group">
+      <div class="">
+        <label><%= f.check_box :remember_me, label: 'Remember me' %> </label>
+      </div>
+    </div>
+  <% end -%>
+
+  <div class="form-group">
+    <%= f.button "Login", class: "btn btn-default btn-lg" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

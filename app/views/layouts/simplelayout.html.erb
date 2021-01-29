@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0">
+  <title>OAuth Server</title>
+  <%= favicon_link_tag('favicon.png') %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', "data-turbolinks-track"=> 'reload' %>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="signin-form">
+    <div class="">
+      <%= image_tag('cloudchomp-full-logo.png', class: 'full-logo') %>
+      <% if alert && alert != '' %>
+          <div class="alert alert-danger custom-alert">
+            <p><%= alert %></p>
+          </div>
+      <% end %>
+      <% if notice %>
+          <div class="alert alert-info custom-alert">
+            <p><%= notice %></p>
+          </div>
+      <% end %>
+      <%= yield %>
+
+      <br>
+      <small class="powered-by login">
+        Powered by <a href="https://www.cloudchomp.com">CloudChomp, Inc.</a> Copyright © <%= Date.today.year %>
+      </small>
+    </div>
+  </div>
+</div>
+</body>
+</html>

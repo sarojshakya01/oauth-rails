@@ -1,26 +1,34 @@
-<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
+<%= form_for(resource, as: resource_name, url: session_path(resource_name),:html => {:name => 'login_form', :novalidate=>'novalidate',}) do |f| %>
   <div class="form-group">
-    <%= f.email_field :email, autofocus: true, class: "form-control input-lg" %>
+    <%= f.label :account_name, class: "required" %>
+    <%= f.text_field :account_name, autofocus: true, class: "form-control input-lg clean", :'required' =>'required' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class: "required" %>
+    <%= f.email_field :email, class: "form-control input-lg clean", :'required'=>'required' %>
   </div>
 
   <div class="form-group">
-    <div class="showHidePassword">
-      <%= f.password_field :password, autocomplete: "off", class: "input-lg", :append => "<i class='fa fa-eye-slash'></i>".html_safe %>
+    <%= f.label :password%>
+    <div class="input-group">
+      <%= f.password_field :password, autocomplete: "off", class: "form-control input-lg", :'aria-describedby'=> "password-input-group"%>
+      <span class="input-group-addon clickable showHidePassword" onclick='showHidePassword(event)' id="password-input-group">
+        <i class='fa fa-eye-slash ' title='Show Password' data-toggle='tooltip'></i>
+      </span>
     </div>
   </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="form-group">
-      <div class="">
-        <label><%= f.check_box :remember_me, label: 'Remember me' %> </label>
+  <% if devise_mapping.rememberable? %>
+      <div class="checkbox">
+        <label for="user_remember_me">
+          <%= f.check_box :remember_me %>
+          Remember Me
+        </label>
       </div>
-    </div>
-  <% end -%>
+  <% end %>
 
   <div class="form-group">
-    <%= f.button "Login", class: "btn btn-default btn-lg" %>
+    <%= f.button "Login", type: 'submit', class: "btn btn-default btn-lg" %>
   </div>
 <% end %>
-
 <%= render "users/shared/links" %>

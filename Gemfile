@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '2.7.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
@@ -59,5 +59,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap_form', '2.6.0'
-gem "doorkeeper", "~> 5.4.0"
+# gem "doorkeeper", "~> 5.4.0"
+gem 'doorkeeper'
 gem "devise", "~> 4.7"

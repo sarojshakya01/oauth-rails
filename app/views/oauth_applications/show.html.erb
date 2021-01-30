@@ -8,17 +8,17 @@
 
     <h5><%= t('.secret') %>:</h5>
     <p><code><%= @application.secret %></code></p>
-    <!--
+    
     <h5><%= t('.scopes')%>:</h5>
     <p><code><%= @application.scopes%></code></p>
 
     <h5><%= t('.confidential')%>:</h5>
     <p><code><%= @application.confidential%></code></p>
-    -->
+    
     <h5><%= t('.callback_urls') %>:</h5>
     <p><code><%= @application.redirect_uri%></code></p>
 
-    <!--
+    
     <table class="table table-striped">
       <tbody>
         <% @application.redirect_uri.split.each do |uri| %>
@@ -29,7 +29,7 @@
         <% end %>
       </tbody>
     </table>
-    -->
+    
     <p>
       <%= link_to t('doorkeeper.applications.buttons.edit'), edit_oauth_application_path(@application), class: 'btn btn-sm btn-primary' %>
       <%= render 'delete_form',class: "btn btn-danger", application: @application %>

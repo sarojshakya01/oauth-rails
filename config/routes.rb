@@ -7,12 +7,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  # Project administration via UI
-  resources :projects
-
   namespace :api do
     namespace :v1 do
-      resources :projects
       get '/me' => 'credentials#me'
     end
   end

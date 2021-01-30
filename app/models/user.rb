@@ -24,5 +24,6 @@ class User < ApplicationRecord
            class_name: "Doorkeeper::Application",
            as: :owner
 
-  has_many :projects, dependent: :delete_all
+  def account_name
+  end
 end

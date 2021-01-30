@@ -28,6 +28,7 @@ Doorkeeper.configure do
   #   # Put your admin authentication logic here.
   #   # Example implementation:
   #
+
   #   if current_user
   #     head :forbidden unless current_user.admin?
   #   else
@@ -36,7 +37,7 @@ Doorkeeper.configure do
   # end
 
   admin_authenticator do
-    current_user || warden.authenticate!(scope: :user)
+    current_user || warden.authenticate!(scope: :user, store: false)
   end
 
 
@@ -239,7 +240,7 @@ Doorkeeper.configure do
   # https://doorkeeper.gitbook.io/guides/ruby-on-rails/scopes
   #
   default_scopes  :public
-  optional_scopes :write, :update
+  # optional_scopes :write, :update
 
   # Allows to restrict only certain scopes for grant_type.
   # By default, all the scopes will be available for all the grant types.
@@ -439,6 +440,10 @@ Doorkeeper.configure do
   # skip_authorization do |resource_owner, client|
   #   client.superapp? or resource_owner.admin?
   # end
+
+  skip_authorization do
+    true
+  end
 
   # Configure custom constraints for the Token Introspection request.
   # By default this configuration option allows to introspect a token by another

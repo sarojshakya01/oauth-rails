@@ -24,9 +24,4 @@ class User < ApplicationRecord
            class_name: "Doorkeeper::Application",
            as: :owner
 
-  def account_name
-  end
-
-  def account_name= name
-  end
 end

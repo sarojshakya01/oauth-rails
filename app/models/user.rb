@@ -26,4 +26,7 @@ class User < ApplicationRecord
 
   def account_name
   end
+
+  def account_name= name
+  end
 end

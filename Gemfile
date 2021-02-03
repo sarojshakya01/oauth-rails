@@ -62,3 +62,5 @@ gem 'bootstrap_form', '2.6.0'
 # gem "doorkeeper", "~> 5.4.0"
 gem 'doorkeeper'
 gem "devise", "~> 4.7"
+
+gem 'activerecord-session_store'

@@ -16,6 +16,8 @@ Doorkeeper.configure do
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
     current_user || warden.authenticate!
+    current_user.update(:session_id => request.session_options[:id])
+    current_user
   end
 
 

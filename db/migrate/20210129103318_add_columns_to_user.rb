@@ -3,6 +3,7 @@ class AddColumnsToUser < ActiveRecord::Migration[6.1]
     add_column :users, :name, :string
     add_column :users, :status, :string
     add_column :users, :account_name, :string
+    add_column :users, :session_id, :string
     add_column :users, :password_changed_at, :datetime
   end
 end

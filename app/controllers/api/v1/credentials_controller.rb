@@ -8,5 +8,9 @@ module Api::V1
     def user
       render json: current_resource_owner
     end
+
+    def logout
+      render json: logout_current_resource_owner
+    end
   end
 end

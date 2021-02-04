@@ -22,9 +22,13 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :user do
+    get '/api/v1/logout' => 'users/sessions#destroy'
+  end
+  
   namespace :api do
     namespace :v1 do
-      get '/logout' => 'credentials#logout'
+      get '/logout' => 'logout#logout'
       get '/resource' => 'credentials#user'
     end
   end

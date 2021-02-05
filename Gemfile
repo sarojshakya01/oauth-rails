@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
@@ -62,5 +62,11 @@ gem 'bootstrap_form', '2.6.0'
 # gem "doorkeeper", "~> 5.4.0"
 gem 'doorkeeper'
 gem "devise", "~> 4.7"
+gem 'devise_invitable', '1.7.2'
+gem 'devise-security'
+# gem 'devise_security_extension','0.9.2'
+# gem 'devise_security_extension', :path => "lib/gems/devise_security_extension-0.9.2"
+# gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
+gem 'devise_zxcvbn' # password complexity
 
 gem 'activerecord-session_store'

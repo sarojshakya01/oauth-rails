@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_055547) do
+ActiveRecord::Schema.define(version: 2021_02_04_123233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_055547) do
     t.text "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
@@ -92,10 +93,32 @@ ActiveRecord::Schema.define(version: 2021_02_03_055547) do
     t.string "status"
     t.datetime "password_changed_at"
     t.text "account_name"
+    t.string "last_session_id"
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.bigint "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_users_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+
+  create_table :old_passwords do |t|
+    t.string :encrypted_password, null: false
+    t.string :password_archivable_type, null: false
+    t.integer :password_archivable_id, null: false
+    t.string :password_salt # Optional. bcrypt stores the salt in the encrypted password field so this column may not be necessary.
+    t.datetime :created_at
+  end
+  add_index :old_passwords, [:password_archivable_type, :password_archivable_id], name: 'index_password_archivable'
 end

@@ -71,12 +71,12 @@ GEM
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.6.0)
+    bootsnap (1.7.1)
       msgpack (~> 1.0)
     bootstrap_form (2.6.0)
     builder (3.2.4)
     byebug (11.1.3)
-    capybara (3.35.1)
+    capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -94,15 +94,24 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-security (0.15.0)
+      devise (>= 4.3.0, < 5.0)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
+    devise_zxcvbn (5.1.0)
+      devise
+      zxcvbn-js (~> 4.4.1)
     doorkeeper (5.4.0)
       railties (>= 5)
     erubi (1.10.0)
+    execjs (2.7.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.8.7)
+    i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
@@ -181,7 +190,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
-    rubocop (1.9.0)
+    rubocop (1.9.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -246,6 +255,8 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
+    zxcvbn-js (4.4.3)
+      execjs
 
 PLATFORMS
   ruby
@@ -259,6 +270,9 @@ DEPENDENCIES
   capybara (>= 3.26)
   coderay
   devise (~> 4.7)
+  devise-security
+  devise_invitable (= 1.7.2)
+  devise_zxcvbn
   doorkeeper
   faker
   jbuilder (~> 2.7)
@@ -278,7 +292,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.2.7

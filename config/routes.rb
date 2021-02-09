@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     :sessions=>'users/sessions',
     :passwords=>'users/passwords',
     :unlocks=>'users/unlocks',
-  } do
+  } do    
     delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
@@ -22,22 +22,19 @@ Rails.application.routes.draw do
     get   'users', to: 'users#index', as: 'users'
     get   'users/mirror_new/:id', to: 'users/invitations#mirror_new', as: 'new_mirror_user_invitation'
     delete 'myprofile/(:id)', to: 'users#destroy', as: 'user_destroy'
+    get '/logout', to: 'users/sessions#logout'
   end
 
   unauthenticated :user do
     post 'register', to: 'dashboard#marketplace_registration'
 
     devise_scope :user do
-      root to: 'users/sessions#new'
+      root to: 'doorkeeper/authorizations#new'
     end
 
     devise_scope :user do
       get '/(:account_name)', to: 'users/sessions#new'
     end
-  end
-
-  devise_scope :user do
-    get '/api/v1/logout' => 'users/sessions#destroy'
   end
   
   namespace :api do
@@ -55,4 +52,7 @@ Rails.application.routes.draw do
     end
   end
 
+  #route for impersonate
+  get 'users/impersonate/:token', to: 'users/users#impersonate'
+  post '/impersonate_token', to: 'impersonate#impersonate'
 end

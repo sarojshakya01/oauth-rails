@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_123233) do
+ActiveRecord::Schema.define(version: 2021_02_08_065930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2021_02_04_123233) do
     t.datetime "created_at", null: false
     t.string "scopes"
     t.string "previous_refresh_token", default: "", null: false
-    t.string "resource_session_id"
     t.index ["application_id"], name: "index_oauth_access_tokens_on_application_id"
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
@@ -63,12 +62,29 @@ ActiveRecord::Schema.define(version: 2021_02_04_123233) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "oauth_impersonates", force: :cascade do |t|
+    t.integer "super_user_id"
+    t.integer "user_id"
+    t.string "token"
+    t.datetime "valid_till"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "old_passwords", force: :cascade do |t|
+    t.string "encrypted_password", null: false
+    t.string "password_archivable_type", null: false
+    t.integer "password_archivable_id", null: false
+    t.string "password_salt"
+    t.datetime "created_at"
+    t.index ["password_archivable_type", "password_archivable_id"], name: "index_password_archivable"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
@@ -91,9 +107,8 @@ ActiveRecord::Schema.define(version: 2021_02_04_123233) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "status"
+    t.string "account_name"
     t.datetime "password_changed_at"
-    t.text "account_name"
-    t.string "last_session_id"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -111,14 +126,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_123233) do
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-
-  create_table :old_passwords do |t|
-    t.string :encrypted_password, null: false
-    t.string :password_archivable_type, null: false
-    t.integer :password_archivable_id, null: false
-    t.string :password_salt # Optional. bcrypt stores the salt in the encrypted password field so this column may not be necessary.
-    t.datetime :created_at
-  end
-  add_index :old_passwords, [:password_archivable_type, :password_archivable_id], name: 'index_password_archivable'
+  add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
 end

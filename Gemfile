@@ -64,9 +64,9 @@ gem 'doorkeeper'
 gem "devise", "~> 4.7"
 gem 'devise_invitable', '1.7.2'
 gem 'devise-security'
-# gem 'devise_security_extension','0.9.2'
-# gem 'devise_security_extension', :path => "lib/gems/devise_security_extension-0.9.2"
 # gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
-gem 'devise_zxcvbn' # password complexity
+# gem 'devise_zxcvbn' # password complexity
 
+# gem 'devise_masquerade'
 gem 'activerecord-session_store'
+gem 'strong_password'

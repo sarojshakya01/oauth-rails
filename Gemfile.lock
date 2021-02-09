@@ -71,7 +71,7 @@ GEM
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.7.1)
+    bootsnap (1.7.2)
       msgpack (~> 1.0)
     bootstrap_form (2.6.0)
     builder (3.2.4)
@@ -99,13 +99,9 @@ GEM
     devise_invitable (1.7.2)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
-    devise_zxcvbn (5.1.0)
-      devise
-      zxcvbn-js (~> 4.4.1)
     doorkeeper (5.4.0)
       railties (>= 5)
     erubi (1.10.0)
-    execjs (2.7.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
@@ -132,7 +128,7 @@ GEM
     minitest (5.14.3)
     msgpack (1.4.2)
     multi_json (1.15.0)
-    nio4r (2.5.4)
+    nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
@@ -144,7 +140,7 @@ GEM
       ast (~> 2.4.1)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (5.2.0)
+    puma (5.2.1)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -225,6 +221,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    strong_password (0.0.9)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -255,8 +252,6 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
-    zxcvbn-js (4.4.3)
-      execjs
 
 PLATFORMS
   ruby
@@ -272,7 +267,6 @@ DEPENDENCIES
   devise (~> 4.7)
   devise-security
   devise_invitable (= 1.7.2)
-  devise_zxcvbn
   doorkeeper
   faker
   jbuilder (~> 2.7)
@@ -285,6 +279,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  strong_password
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

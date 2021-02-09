@@ -56,7 +56,6 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[6.1]
       t.datetime :revoked_at
       t.datetime :created_at, null: false
       t.string   :scopes
-      t.text     :resource_session_id
       
       # The authorization server MAY issue a new refresh token, in which case
       # *the client MUST discard the old refresh token* and replace it with the

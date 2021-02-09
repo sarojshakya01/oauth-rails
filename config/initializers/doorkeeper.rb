@@ -16,8 +16,6 @@ Doorkeeper.configure do
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
     current_user || warden.authenticate!
-    current_user.update(:last_session_id => request.session_options[:id])
-    current_user
   end
 
 
@@ -505,4 +503,4 @@ Doorkeeper.configure do
   #
   # realm "Doorkeeper"
 end
-Doorkeeper::AccessToken.send :include, AccessTokenCustomData
+# Doorkeeper::AccessToken.send :include, AccessTokenCustomData

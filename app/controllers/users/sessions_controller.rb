@@ -43,6 +43,18 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  def logout
+    
+    if current_user
+      current_user.access_grants.delete_all
+      current_user.access_tokens.delete_all
+    end
+    sign_out
+
+    # check the name of app
+    redirect_to Rails.application.config.ccan_app_url
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

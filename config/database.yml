@@ -31,6 +31,16 @@ default: &default
 development:
   <<: *default
 
+ccan_local:
+  adapter: postgresql
+  host: <%= ENV['DB_SERVER'] %>
+  database: <%= ENV['DB_DATABASE'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  port: <%= ENV['DB_PORT'] %>
+  pool: 3
+  reconnect: true
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is

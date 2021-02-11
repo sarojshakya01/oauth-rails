@@ -52,7 +52,9 @@ class Users::SessionsController < Devise::SessionsController
     sign_out
 
     # check the name of app
-    redirect_to Rails.application.config.ccan_app_url
+    if params[:app_name] == 'ccan'
+      redirect_to Rails.application.config.ccan_app_url
+    end
   end
 
   # protected

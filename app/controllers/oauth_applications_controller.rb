@@ -2,10 +2,11 @@
 
 class OauthApplicationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_admin
   before_action :set_application, only: %i[show edit update destroy]
 
   def index
-    @applications = current_user.oauth_applications.ordered_by(:created_at)
+    @applications = OauthApplication.all.order(:created_at)
   end
 
   def show
@@ -48,10 +49,16 @@ class OauthApplicationsController < ApplicationController
   private
 
     def set_application
-      @application = current_user.oauth_applications.find(params[:id])
+      @application = OauthApplication.find(params[:id].to_i)
     end
 
     def application_params
-      params.require(:doorkeeper_application).permit(:name, :redirect_uri, :scopes, :confidential)
+      params.require(:oauth_application).permit(:name, :url, :redirect_uri, :scopes, :confidential)
+    end
+
+    def check_admin
+      if !current_user.cc_admin
+        redirect_to '/'
+      end
     end
 end

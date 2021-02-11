@@ -26,9 +26,9 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
 
-  has_many :oauth_applications,
-           class_name: "Doorkeeper::Application",
-           as: :owner
+  # has_many :oauth_applications,
+  #          class_name: "Doorkeeper::Application",
+  #          as: :owner
 
   # Basic usage.  Defaults to minimum entropy of 18 and no dictionary checking
   # validates :password, password_strength: true
@@ -45,4 +45,7 @@ class User < ApplicationRecord
   # # Alternative way to request password strength validation on a field
   # validates_password_strength :password
 
+  def cc_admin
+    false
+  end
 end

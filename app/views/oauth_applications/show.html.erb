@@ -3,7 +3,10 @@
     <h5><%= t('.App Name', name: @application.name) %></h2>
     <p><code><%= @application.name %></code></p>
 
-    <h5><%= t('.application_id') %>:</h5>
+    <h5><%= t('.application_url') %>:</h5>
+    <p><code><%= @application.url %></code></p>
+
+    <h5><%= t('.application_uid') %>:</h5>
     <p><code><%= @application.uid %></code></p>
 
     <h5><%= t('.secret') %>:</h5>

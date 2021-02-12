@@ -53,7 +53,7 @@ class OauthApplicationsController < ApplicationController
     end
 
     def application_params
-      params.require(:oauth_application).permit(:name, :url, :redirect_uri, :scopes, :confidential)
+      params.require(:doorkeeper_application).permit(:name, :url, :redirect_uri, :scopes, :confidential)
     end
 
     def check_admin

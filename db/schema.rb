@@ -107,9 +107,10 @@ ActiveRecord::Schema.define(version: 2021_02_08_065930) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "status"
+    t.boolean "status"
     t.string "account_name"
     t.datetime "password_changed_at"
+    t.integer "app_user_id"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_065930) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.index ["app_user_id"], name: "index_app_user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

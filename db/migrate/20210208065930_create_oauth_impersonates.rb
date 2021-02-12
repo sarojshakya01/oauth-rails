@@ -8,5 +8,6 @@ class CreateOauthImpersonates < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :users, :app_user_id, name: 'index_app_user_id'
   end
 end
